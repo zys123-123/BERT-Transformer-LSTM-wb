@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import pandas as pd
-import pickle as pkl
-from tqdm import tqdm
 from datetime import timedelta
 from torch.utils.data import Dataset, DataLoader
 from transformers import BertTokenizer, BertModel
@@ -30,8 +28,11 @@ learning_rate = 1e-3                        # 学习率
 hidden_size = 128                           # lstm隐藏层
 num_layers = 2                              # lstm层数
 
+# 指定BERT模型的本地路径
+local_bert_path = './bert-base-chinese'
+
 # 初始化BERT的tokenizer
-tokenizer = BertTokenizer.from_pretrained('bert-base-chinese')
+tokenizer = BertTokenizer.from_pretrained(local_bert_path)
 
 
 #训练日志，复用性很高的代码
@@ -71,7 +72,6 @@ def log_creater(output_dir):
 def get_data():
     train, dev, test = load_dataset(data_path)
     return train, dev, test
-
 
 def load_dataset(path):
     contents = []
