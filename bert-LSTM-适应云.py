@@ -300,7 +300,7 @@ def result_test(real, pred):
     })
 
     # 将DataFrame保存到Excel
-    df.to_excel("./result/score_data.xlsx", index=False)
+    df.to_excel("./results/score_data.xlsx", index=False)
 
     # 绘制并保存混淆矩阵
     labels = ['negative', 'active']
